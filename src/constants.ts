@@ -10,6 +10,7 @@ export enum ChainId {
   GÖRLI = 5,
   KOVAN = 42,
   METER = 82,
+  THETA = 365
 }
 
 export enum TradeType {

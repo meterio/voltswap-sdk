@@ -1,8 +1,8 @@
 {
-  "name": "meterswap-sdk",
+  "name": "voltswap-sdk",
   "license": "MIT",
   "version": "3.0.5",
-  "description": "🛠 An SDK for building applications on top of Meterswap.",
+  "description": "🛠 An SDK for building applications on top of Voltswap.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
