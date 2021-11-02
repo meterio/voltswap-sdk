@@ -1,7 +1,11 @@
 {
   "name": "voltswap-sdk",
   "license": "MIT",
-  "version": "3.0.6",
+   "repository": {
+     "url": "https://github.com/meterio/voltswap-sdk"
+   },
+   "homepage": "https://github.com/meterio/voltswap-sdk",
+  "version": "3.0.7",
   "description": "🛠 An SDK for building applications on top of Voltswap.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
