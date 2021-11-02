@@ -64,5 +64,5 @@ export const WETH = {
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.METER]: new Token(ChainId.METER, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
   
-  [ChainId.THETA]: new Token(ChainId.THETA, '0x4dc08b15ea0e10b96c41aec22fab934ba15c983e', 18, 'WTFUEL', 'Wrapped TFuel')
+  [ChainId.THETA]: new Token(ChainId.THETA, '0x4Dc08B15ea0e10B96c41Aec22fAB934bA15C983e', 18, 'WTFUEL', 'Wrapped TFuel')
 }
