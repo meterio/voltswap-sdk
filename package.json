@@ -5,7 +5,7 @@
      "url": "https://github.com/meterio/voltswap-sdk"
    },
    "homepage": "https://github.com/meterio/voltswap-sdk",
-  "version": "3.0.7",
+  "version": "3.0.9",
   "description": "🛠 An SDK for building applications on top of Voltswap.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
