@@ -1,5 +1,5 @@
 import invariant from 'tiny-invariant'
-import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
+import { Tags, TokenInfo } from '@uniswap/token-lists'
 import { ChainId } from '../constants'
 import { validateAndParseAddress } from '../utils'
 import { Currency } from './currency'
