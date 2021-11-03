@@ -1,7 +1,9 @@
 import invariant from 'tiny-invariant'
+import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 import { ChainId } from '../constants'
 import { validateAndParseAddress } from '../utils'
 import { Currency } from './currency'
+
 
 /**
  * Represents an ERC20 token with a unique address and some metadata.
@@ -56,6 +58,34 @@ export function currencyEquals(currencyA: Currency, currencyB: Currency): boolea
   }
 }
 
+
+type TagDetails = Tags[keyof Tags]
+
+export interface TagInfo extends TagDetails {
+  id: string
+}
+
+/**
+ * Token instances created from token info.
+ */
+export class WrappedTokenInfo extends Token {
+  public readonly tokenInfo: TokenInfo
+  public readonly tags: TagInfo[]
+
+  constructor(tokenInfo: TokenInfo, tags: TagInfo[]) {
+    super(tokenInfo.chainId, tokenInfo.address, tokenInfo.decimals, tokenInfo.symbol, tokenInfo.name)
+    this.tokenInfo = tokenInfo
+    this.tags = tags
+  }
+
+  public get logoURI(): string | undefined {
+    return this.tokenInfo.logoURI
+  }
+}
+
+
+
+
 export const WETH = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0xc778417E063141139Fce010982780140Aa0cD5Ab', 18, 'WETH', 'Wrapped Ether'),
@@ -64,5 +94,11 @@ export const WETH = {
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.METER]: new Token(ChainId.METER, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
   
-  [ChainId.THETA]: new Token(ChainId.THETA, '0x4Dc08B15ea0e10B96c41Aec22fAB934bA15C983e', 18, 'WTFUEL', 'Wrapped TFuel')
+  [ChainId.THETA]: new WrappedTokenInfo({chainId:ChainId.THETA, address:'0x4Dc08B15ea0e10B96c41Aec22fAB934bA15C983e', decimals:18, symbol:'WTFUEL', name:'Wrapped TFuel',
+  logoURI:'https://raw.githubusercontent.com/meterio/token-list/master/data/TFUEL/logo.png'
+  },
+   
+  []
+  
+  )
 }
