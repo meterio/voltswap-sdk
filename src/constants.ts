@@ -36,6 +36,9 @@ export const INIT_CODE_HASHES = {
 }
 
 
+export const FACTORY_ADDRESS = '0x56aD9A9149685b290ffeC883937caE191e193135'
+
+export const INIT_CODE_HASH = '0x6e606594edd361bf44d40d92d2cdfc727a589f93838ad772145f30af1d6664eb'
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)
 
