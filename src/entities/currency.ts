@@ -90,14 +90,14 @@ export function currencyEquals(currencyA: Currency, currencyB: Currency): boolea
 
 type TagDetails = Tags[keyof Tags]
 
-export interface TagInfo extends TagDetails {
+ interface TagInfo extends TagDetails {
   id: string
 }
 
 /**
  * Token instances created from token info.
  */
-export class WrappedTokenInfo extends Token {
+ class WrappedTokenInfo extends Token {
   public readonly tokenInfo: TokenInfo
   public readonly tags: TagInfo[]
 
