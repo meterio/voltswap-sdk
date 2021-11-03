@@ -37,7 +37,7 @@ export class Currency {
   }
 }
 
-export class Token extends Currency {
+ class Token extends Currency {
   public readonly chainId: ChainId
   public readonly address: string
 
@@ -72,20 +72,7 @@ export class Token extends Currency {
   }
 }
 
-/**
- * Compares two currencies for equality
- */
-export function currencyEquals(currencyA: Currency, currencyB: Currency): boolean {
-  if (currencyA instanceof Token && currencyB instanceof Token) {
-    return currencyA.equals(currencyB)
-  } else if (currencyA instanceof Token) {
-    return false
-  } else if (currencyB instanceof Token) {
-    return false
-  } else {
-    return currencyA === currencyB
-  }
-}
+
 
 
 type TagDetails = Tags[keyof Tags]
