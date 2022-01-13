@@ -54,10 +54,10 @@ describe('Pair', () => {
   describe('#token0Price', () => {
     it('returns price of token0 in terms of token1', () => {
       expect(new Pair(new TokenAmount(USDC, '101'), new TokenAmount(DAI, '100')).token0Price).toEqual(
-        new Price(DAI, USDC, '100', '101')
+        new Price(DAI, USDC, '100', '101', ChainId.MAINNET)
       )
       expect(new Pair(new TokenAmount(DAI, '100'), new TokenAmount(USDC, '101')).token0Price).toEqual(
-        new Price(DAI, USDC, '100', '101')
+        new Price(DAI, USDC, '100', '101', ChainId.MAINNET)
       )
     })
   })
@@ -65,10 +65,10 @@ describe('Pair', () => {
   describe('#token1Price', () => {
     it('returns price of token1 in terms of token0', () => {
       expect(new Pair(new TokenAmount(USDC, '101'), new TokenAmount(DAI, '100')).token1Price).toEqual(
-        new Price(USDC, DAI, '101', '100')
+        new Price(USDC, DAI, '101', '100',ChainId.MAINNET)
       )
       expect(new Pair(new TokenAmount(DAI, '100'), new TokenAmount(USDC, '101')).token1Price).toEqual(
-        new Price(USDC, DAI, '101', '100')
+        new Price(USDC, DAI, '101', '100', ChainId.MAINNET)
       )
     })
   })

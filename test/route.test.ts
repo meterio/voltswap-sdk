@@ -25,14 +25,14 @@ describe('Route', () => {
   })
 
   it('supports ether input', () => {
-    const route = new Route([pair_0_weth], ETHER)
+    const route = new Route([pair_0_weth], ETHER[1])
     expect(route.pairs).toEqual([pair_0_weth])
     expect(route.input).toEqual(ETHER)
     expect(route.output).toEqual(token0)
   })
 
   it('supports ether output', () => {
-    const route = new Route([pair_0_weth], token0, ETHER)
+    const route = new Route([pair_0_weth], token0, ETHER[1])
     expect(route.pairs).toEqual([pair_0_weth])
     expect(route.input).toEqual(token0)
     expect(route.output).toEqual(ETHER)
