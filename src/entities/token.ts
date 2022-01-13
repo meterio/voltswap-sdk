@@ -94,9 +94,18 @@ export const WETH = {
   [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
   [ChainId.METER]: new Token(ChainId.METER, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
   
-  [ChainId.THETA]: new WrappedTokenInfo({chainId:ChainId.THETA, address:'0x4Dc08B15ea0e10B96c41Aec22fAB934bA15C983e', decimals:18, symbol:'WTFUEL', name:'Wrapped TFuel',
+  [ChainId.THETA]: new WrappedTokenInfo({chainId:ChainId.THETA, address:'0x4Dc08B15ea0e10B96c41Aec22fAB934bA15C983e', decimals:18, symbol:'TFUEL', name:'Wrapped TFuel',
   logoURI:'https://raw.githubusercontent.com/meterio/token-list/master/data/TFUEL/logo.png'
   },
+  
+   
+  []
+  
+  ),
+  [ChainId.MOONBEAM]: new WrappedTokenInfo({chainId:ChainId.MOONBEAM, address:'0xAcc15dC74880C9944775448304B263D191c6077F', decimals:18, symbol:'GLMR', name:'Wrapped GLMR',
+  logoURI:'https://raw.githubusercontent.com/meterio/token-list/master/data/GLMR/logo.png'
+  },
+  
    
   []
   

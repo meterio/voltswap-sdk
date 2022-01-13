@@ -20,7 +20,7 @@ export class Currency {
   /**
    * The only instance of the base class `Currency`.
    */
-  public static readonly ETHER: Currency = new Currency(18, 'WTFUEL', 'Wrapped TFuel')
+  public static readonly ETHER: Currency = new Currency(18, 'TFUEL', 'Wrapped TFuel')
 
   /**
    * Constructs an instance of the base class `Currency`. The only instance of the base class `Currency` is `Currency.ETHER`.
@@ -99,8 +99,34 @@ type TagDetails = Tags[keyof Tags]
   }
 }
 
-const ETHER = new WrappedTokenInfo({chainId:ChainId.THETA, address:'0x4Dc08B15ea0e10B96c41Aec22fAB934bA15C983e', decimals:18, symbol:'WTFUEL', name:'Wrapped TFuel',
-logoURI:'https://raw.githubusercontent.com/meterio/token-list/master/data/TFUEL/logo.png'
-},
-[])
-export { ETHER }
+export const ETHER = {
+
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, '0xc778417E063141139Fce010982780140Aa0cD5Ab', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0xc778417E063141139Fce010982780140Aa0cD5Ab', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.KOVAN]: new Token(ChainId.KOVAN, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
+  [ChainId.METER]: new Token(ChainId.METER, '0xd0A1E359811322d97991E03f863a0C30C2cF029C', 18, 'WETH', 'Wrapped Ether'),
+  
+
+  [ChainId.THETA]: new WrappedTokenInfo({chainId:ChainId.THETA, address:'0x4Dc08B15ea0e10B96c41Aec22fAB934bA15C983e', decimals:18, symbol:'TFUEL', name:'Wrapped TFuel',
+  logoURI:'https://raw.githubusercontent.com/meterio/token-list/master/data/TFUEL/logo.png'
+  },
+  
+   
+  []
+  
+  ),
+  [ChainId.MOONBEAM]: new WrappedTokenInfo({chainId:ChainId.MOONBEAM, address:'0xAcc15dC74880C9944775448304B263D191c6077F', decimals:18, symbol:'GLMR', name:'Wrapped GLMR',
+  logoURI:'https://raw.githubusercontent.com/meterio/token-list/master/data/GLMR/logo.png'
+  },
+  
+   
+  []
+  
+  )
+}
+
+
+
+

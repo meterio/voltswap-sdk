@@ -89,13 +89,13 @@ export interface BestTradeOptions {
  */
 function wrappedAmount(currencyAmount: CurrencyAmount, chainId: ChainId): TokenAmount {
   if (currencyAmount instanceof TokenAmount) return currencyAmount
-  if (currencyAmount.currency === ETHER) return new TokenAmount(WETH[chainId], currencyAmount.raw)
+  if (currencyAmount.currency === ETHER[chainId]) return new TokenAmount(WETH[chainId], currencyAmount.raw)
   invariant(false, 'CURRENCY')
 }
 
 function wrappedCurrency(currency: Currency, chainId: ChainId): Token {
   if (currency instanceof Token) return currency
-  if (currency === ETHER) return WETH[chainId]
+  if (currency === ETHER[chainId]) return WETH[chainId]
   invariant(false, 'CURRENCY')
 }
 
@@ -152,6 +152,7 @@ export class Trade {
   }
 
   public constructor(route: Route, amount: CurrencyAmount, tradeType: TradeType) {
+  
     const amounts: TokenAmount[] = new Array(route.path.length)
     const nextPairs: Pair[] = new Array(route.pairs.length)
     if (tradeType === TradeType.EXACT_INPUT) {
@@ -179,20 +180,21 @@ export class Trade {
     this.inputAmount =
       tradeType === TradeType.EXACT_INPUT
         ? amount
-        : route.input === ETHER
-        ? CurrencyAmount.ether(amounts[0].raw)
+        : route.input === ETHER[route.chainId]
+        ? CurrencyAmount.ether(amounts[0].raw,route.chainId)
         : amounts[0]
     this.outputAmount =
       tradeType === TradeType.EXACT_OUTPUT
         ? amount
-        : route.output === ETHER
-        ? CurrencyAmount.ether(amounts[amounts.length - 1].raw)
+        : route.output === ETHER[route.chainId]
+        ? CurrencyAmount.ether(amounts[amounts.length - 1].raw,route.chainId)
         : amounts[amounts.length - 1]
     this.executionPrice = new Price(
       this.inputAmount.currency,
       this.outputAmount.currency,
       this.inputAmount.raw,
-      this.outputAmount.raw
+      this.outputAmount.raw,
+      route.chainId
     )
     this.nextMidPrice = Price.fromRoute(new Route(nextPairs, route.input))
     this.priceImpact = computePriceImpact(route.midPrice, this.inputAmount, this.outputAmount)
@@ -213,7 +215,7 @@ export class Trade {
         .multiply(this.outputAmount.raw).quotient
       return this.outputAmount instanceof TokenAmount
         ? new TokenAmount(this.outputAmount.token, slippageAdjustedAmountOut)
-        : CurrencyAmount.ether(slippageAdjustedAmountOut)
+        : CurrencyAmount.ether(slippageAdjustedAmountOut, this.route.chainId)
     }
   }
 
@@ -229,7 +231,7 @@ export class Trade {
       const slippageAdjustedAmountIn = new Fraction(ONE).add(slippageTolerance).multiply(this.inputAmount.raw).quotient
       return this.inputAmount instanceof TokenAmount
         ? new TokenAmount(this.inputAmount.token, slippageAdjustedAmountIn)
-        : CurrencyAmount.ether(slippageAdjustedAmountIn)
+        : CurrencyAmount.ether(slippageAdjustedAmountIn, this.route.chainId)
     }
   }
 
@@ -279,7 +281,7 @@ export class Trade {
       let amountOut: TokenAmount
       try {
         ;[amountOut] = pair.getOutputAmount(amountIn)
-      } catch (error) {
+      } catch (error:any) {
         // input too low
         if (error.isInsufficientInputAmountError) {
           continue
@@ -367,7 +369,7 @@ export class Trade {
       let amountIn: TokenAmount
       try {
         ;[amountIn] = pair.getInputAmount(amountOut)
-      } catch (error) {
+      } catch (error:any) {
         // not enough liquidity in this pair
         if (error.isInsufficientReservesError) {
           continue
